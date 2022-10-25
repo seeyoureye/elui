@@ -126,7 +126,9 @@ export default {
     //删除时重新发送请求,如果当前显示小于 1 删除时 让当前页 自减 1 是不是可以用 num-- 算了
     deleteUserMethod(){
         if(this.userList.length==1){
-            this.paginationData.current = this.paginationData.current-1
+            this.paginationData.current = this.paginationData.current-1;
+            //后续阅读代码时,发现居然没有做最小值的限制 应该是小于1时,让它等于1;不能出现负数的页面.
+            if(this.paginationData.current>1)this.paginationData.current = 1;
         }
         this.getData()
     }

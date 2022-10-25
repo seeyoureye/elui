@@ -3,16 +3,14 @@
     title="编辑用户信息"
     :visible.sync="editUserData.isShow"
     width="40%"
-    @close="closeDialog"
-  >
+    @close="closeDialog">
     <el-form
       :model="editUserInfo"
       ref="form"
       :rules="UserRules"
       label-width="80px"
       :inline="false"
-      size="normal"
-    >
+      size="normal">
       <el-form-item label="用户名称" style="width: 500px">
         <el-input v-model="editUserInfo.username" disabled></el-input>
       </el-form-item>
@@ -24,8 +22,8 @@
       </el-form-item>
     </el-form>
     <span slot="footer">
-      <el-button @click="closeDialog">Cancel</el-button>
-      <el-button type="primary" @click="onSubmit">OK</el-button>
+      <el-button @click="closeDialog">取消</el-button>
+      <el-button type="primary" @click="onSubmit">确认修改</el-button>
     </span>
   </el-dialog>
 </template>

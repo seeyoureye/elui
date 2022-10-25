@@ -1,5 +1,6 @@
 <template>
   <el-table :data="userList" border stripe>
+            <!-- 索引列 -->
             <el-table-column 
                 prop="prop"
                 label="#"
@@ -7,22 +8,27 @@
                 type="index"
             >
             </el-table-column>
+            <!-- 名称 -->
             <el-table-column 
                 prop="username"
                 label="姓名">
             </el-table-column>
+            <!-- 邮箱 -->
             <el-table-column 
                 prop="email"
                 label="邮箱">
             </el-table-column>
+            <!-- 电话 -->
             <el-table-column 
                 prop="mobile"
                 label="电话">
             </el-table-column>
+            <!-- 权限 -->
             <el-table-column 
                 prop="role_name"
                 label="角色">
             </el-table-column>
+            <!-- 一个是否勾选是展示 -->
             <el-table-column 
                 prop="prop"
                 label="状态">
@@ -31,6 +37,7 @@
                     </el-switch>
                 </template>
             </el-table-column>
+            <!-- 编辑 删除 重新分配权限的设置 -->
             <el-table-column 
                 prop="prop"
                 label="操作">
@@ -68,6 +75,8 @@ export default {
                 if(res.meta.status==200){
                     //封装的 $message(a,b) a 是 text b 是 type
                     this.myalert(res.meta.msg,'success')
+                }else{
+                this.myalert();
                 }
 
         },

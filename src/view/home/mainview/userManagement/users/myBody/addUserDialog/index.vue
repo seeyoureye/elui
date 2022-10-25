@@ -3,16 +3,14 @@
     title="添加用户"
     :visible="addUserData.isShow"
     width="40%"
-    @close="close"
-  >
+    @close="close">
     <el-form
       :model="addUserInfo"
       ref="AddUserform"
       :rules="addUserRules"
       label-width="80px"
       :inline="false"
-      size="normal"
-    >
+      size="normal">
       <el-form-item label="用户名称" prop="username">
         <el-input v-model="addUserInfo.username"></el-input>
       </el-form-item>
@@ -26,7 +24,6 @@
         <el-input v-model="addUserInfo.mobile"></el-input>
       </el-form-item>
     </el-form>
-
     <span slot="footer">
       <el-button @click="close">取消</el-button>
       <el-button type="primary" @click="verificationInfo">确认</el-button>
