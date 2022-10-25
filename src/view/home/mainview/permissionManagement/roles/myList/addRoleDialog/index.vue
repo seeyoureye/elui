@@ -45,16 +45,16 @@ export default {
             }
         },
         //确认 简单校验一下是否填写内容
+        // 后续编辑 : 当时没写验证规则是因为我认为就两行,没有写的必要 实际上如果有了这里验证就简单了,直接$ref... 不过也算一种体验吧 起码清晰的知道了验证的是真的有用可以节省后续代码,而不是什么 哎呀我手写也一样,不一样的 这里验证会变得简单,上面清空也更容易,别sb了 以后该怎么写怎么写
+        // 后续编辑 : 为什么会出现很多奇奇怪怪的写法呢,毕竟是自己一个人完成的,所以总归会有些天马行空以及怎么还敢继续往下写的这种情况
         onsubmit(){
             let {roleDesc,roleName} = this.data
             if(!roleDesc && !roleName){
                 this.myalert('用户名和角色描述不能为空','warning')
             }else if(!roleDesc){
                 this.myalert('角色描述不能为空','warning')
-                
             }else if(!roleName){
                 this.myalert('角色名称不能为空','warning')
-                
             }else{
                 this.sendReq(roleDesc,roleName)
             }

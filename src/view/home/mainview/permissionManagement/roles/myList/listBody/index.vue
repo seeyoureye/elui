@@ -8,6 +8,12 @@
           <!-- 编辑按钮 -->
           <MyButton :buttonData="buttonData.edit"  @click.native="onclick(row,'edit')" />
           <!-- 删除 -->
+          <!-- 后续编辑 : 
+            这个删除弹个气泡,然后是否确认是该做成个组件的,因为是有复用的必要
+            当时确实是省事了,导致后续没有再出现这个东西因为我嫌麻烦
+            而且这里面我有点强行了, 3个按钮都是我封装的,这很好 没什么问题 
+            但是出现在 气泡组件的就有点没必要了,以后这里要注意 因为过度的封装就不便于阅读了
+          -->
           <el-popconfirm
             title="是否删除"
             confirmButtonText="确认"
@@ -65,6 +71,8 @@ export default {
     return {
       buttonData: {
         //button封装的信息
+        // 后续编辑 : 这里是封装的第一次体验,我封装了3个button 其实已经有了雏形, 我都想到了用对象套对象 怎么不直接用数组呢,v-for直接生成3个不就行了
+        // 后续编辑 : 不过后续就这样使用了,也算是一步一个脚印吧,只不过有点走偏执了
         edit: {
           type: "primary",
           icon: "el-icon-edit",

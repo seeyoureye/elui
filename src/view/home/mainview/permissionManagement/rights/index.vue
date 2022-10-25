@@ -12,7 +12,6 @@
           <MyList :dataList='dataList'/>
         </div>
       </el-card>
-      
     </div>
   </div>
 </template>

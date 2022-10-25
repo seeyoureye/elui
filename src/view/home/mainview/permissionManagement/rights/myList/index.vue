@@ -41,6 +41,8 @@ export default {
   },
   methods: {
     // 根据传入的不同数值,返回不同的信息
+    // 后续编辑 : 你看,这里其实可以是数组的, level正好对应索引,这是第二次,传递内容可以是数组但是是对象结构了...很明显变化是需要时间的
+    // 后续编辑 : 不是说写的不好,而是可以更好
     myTagData(levelNum) {
       let obj =  {
         type: "",
@@ -50,7 +52,6 @@ export default {
       if (levelNum == 0) {
         obj.type = "primary";
         obj.text = "一级";
-        return obj;
       } else if (levelNum == 1) {
         obj.type = "success";
         obj.text = "二级";

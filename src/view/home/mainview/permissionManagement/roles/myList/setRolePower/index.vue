@@ -3,8 +3,8 @@
     title="分配角色权限"
     :visible.sync="setRolesIsShow.isShow"
     width="30%"
-    @close="closeDialog('close')"
-  >
+    @close="closeDialog('close')">
+    <!-- 一个树状结构,默认展开 -->
     <el-tree
       ref="tree"
       :data="powerListData.powerList"
@@ -14,9 +14,7 @@
       :show-checkbox="true"
       :highlight-current="false"
       :default-checked-keys="defaultTree"
-      @node-click="nodeClick"
-    ></el-tree>
-
+      @node-click="nodeClick"></el-tree>
     <span slot="footer">
       <el-button @click="closeDialog('close')">取消</el-button>
       <el-button type="primary" @click="onSubmit">确认</el-button>

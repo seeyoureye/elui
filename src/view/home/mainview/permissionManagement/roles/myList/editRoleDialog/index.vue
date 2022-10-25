@@ -14,7 +14,7 @@
     </el-form>
     <span slot="footer">
         <el-button @click="closeDialog('close')">取消</el-button>
-        <el-button type="primary" @click="onSubmit">OK</el-button>
+        <el-button type="primary" @click="onSubmit">确认</el-button>
     </span>
   </el-dialog>
 </template>
@@ -39,10 +39,12 @@ export default {
         closeDialog(action){
             this.$emit('openAndCloseDialog',action,'editRoleIsShow')
         },
+        // 确认按钮回调
         onSubmit(){
             let {roleId,roleName,roleDesc} = this.roleForIdData
             this.sendReq(roleId,{roleName,roleDesc})
         },
+        //发送请求
         async sendReq(id,data){
             let {data:res} = await this.$API.rights.submitEditRole(id,data)
             if(res.meta.status==200){
