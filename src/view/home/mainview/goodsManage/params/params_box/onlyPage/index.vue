@@ -79,6 +79,9 @@ export default {
       }
     },
     methods: {
+      // 后续编辑 : 看吧,这就是我说的,不同情况下不一样,这里还需要id 或者是value 传递给两个不同的函数
+      // 后续编辑 : 所以我真不知道怎么让他拆分成一个全局方法,让所有的都能复用
+      // 后续编辑 : 我只能做到让某个方法,在它那个页面进行复用,或者几个简单的复用 大范围全局都能使用是还没玩明白
       SharePageDialogMethod(action,obj,value){
         if(action=='open'){
           this[obj] = true;

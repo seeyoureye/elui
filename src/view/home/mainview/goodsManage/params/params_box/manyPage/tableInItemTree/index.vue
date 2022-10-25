@@ -3,6 +3,11 @@
   <div class="treeClass">
    <div class="inCenter">
      <!-- 标签 v-for -->
+     <!-- 后续编辑 :
+        这一大段,都是根据el-ui上案例改编而来
+        现在看来,不该使用封装的button,普通的就行了
+        我这样反而写复杂了   
+     -->
      <MyTag v-for="(tag,k) in treeTagList" :key="k"
      class="myTag"
     @removeItemTag="removeItemTag"

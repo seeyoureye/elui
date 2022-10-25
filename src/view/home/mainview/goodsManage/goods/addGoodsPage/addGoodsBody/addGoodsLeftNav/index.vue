@@ -5,6 +5,10 @@
     @tab-click="tabClick"
     :before-leave="leaveTab"
     ><!-- @tab-click="tabClick" :before-leave="leaveTab" -->
+    <!-- 后续编辑 :
+        第一眼我还有种 我操兄弟挺nb的
+          写的时候才知道我到底做了些什么...
+    -->
     <el-tab-pane
       v-for="item in stepsAndTabs.slice(0, 5)"
       :key="item.key"
@@ -68,53 +72,43 @@ export default {
       //console.log(this.page);
       //this.$emit('tabClick',parseInt(this.page));
     },
-    //离开之前的回调,这个东西有点麻烦,离开之前做验证 因为我写的是子组件 nav 有 5 个,每个里面套了一个子组件
-    // 并且,页面内没有按钮,我用什么监听呢 watch ? 我点击任何一个不属于它的按钮 然后检测到数据变化
-    // 之后执行验证,验证通过就跳转,否则就停在这里 怎么做呢,传个 prop? 本来是 0 ,然后改为 1?
-    // 但是,这个东西会作用于 5 个同时,还是说不同 page 传入不同的值 免得不同值相互冲突?
+    // 后续编辑 : 可以看出当时我写的是5个页面,独立判断如果成功就正常跳转
+    // 后续编辑 : 结果写到后面,只有第一个有表单验证可以供我这么使用,后面并没有
+    // 后续编辑 : 除非我强行在每一个页面都套一层 form? 这也太奇怪了吧,又或者是我一开始就不应该拆分?然后共用一个地方的表单验证,每一次单独验证?
+    // 后续编辑 : 总之这里其实算是我整个项目遇到的最大的坑
+    // 后续编辑 : 首先我根据上一个页面的v-for的成功,在这里进行了延伸...写的是你吗! 我v-for出来了5个tabs子页面的按钮
+    // 后续编辑 : 然后我又v-for在每一个子tab中生成一个子页面
+    // 后续编辑 : 正是因为这个不同子页面通信 以及方法调用..等等一系列事情并发,让我意识到其实我根本驾驭不了v-for 子组件
+    // 后续编辑 : 这种事情对我来说太早了...
+    // 后续编辑 : 就这个方法而言,我认为写的没有什么问题
+    // 后续编辑 : 有个共同的父组件,然后类似switch那种的清晰明了的结构,每一个页面离开之前验证规则,通过规则返回true/false
+    // 后续编辑 : 但是我没有实现我想要的效果,所以是有瑕疵的,我只有第一个页面是完整验证,后续都没有进行验证,所以是不成熟的构思
     async leaveTab(now, old) {
         // a 是前往的页面 , b 是上一页
-        //this.isChecked = [now, old];
-        //console.log(now,old,this.state,'我是离开之前的方法');
-        // 不管是 return true 还是 resolve() 都不晕会出现点击无效的情况,点击多次时才跳转
-        // 切换标签之前的钩子，若返回 false 或者返回 Promise 且被 reject，则阻止切换。
-        //有一个很大的问题,就是同步代码比传给子组件的早执行,但是又不能使用什么 promise.then 的方式
-        // 只要不是第一时间返回 false 就默认放行了
-        // 除非写在一个页面里面,或者干脆别写这个逻辑判断 最后提交的时候在决定是否没有填写
-        //console.log(this.$refs['EssentialInformation'].examineForm());
-        //let res = this.$refs['EssentialInformation'].examineForm()
-        //console.log(this.$refs['EssentialInformation'][0].$refs.Basicsform.validate());
         let res;// 返回值为布尔值 true/false
         if(old=='1'){//离开 tab 基本信息
              // 通过 ref 调用子组件内部的表单验证,如果条件满足则放行
             res = await this.$refs['EssentialInformation'][0].$refs.Basicsform.validate();
             this.$refs['EssentialInformation'][0].setData();
             let {goods_cat} = this.$store.state.addGoods.dataObj;
-            //单独存一份 id,这样传给其他兄弟组件,单独的 id 
             this.addId = goods_cat;
-        // 用 old 是因为我只在离开页面的时候做判断
         }else if(old == '2'){//离开 tab 商品参数
-            res = true; //这个页面无意义,就是打不打勾,但是那些都是默认勾选的也不能修改
-            //离开页面的时候,把收集的数据转交给需要的发送请求的对象
+            res = true;
             this.$refs['GoodsParams'][0].forEachList();
-            //统统交给 vuex 然后最后获取一次完整的数据对象
         }else if(old == '3'){//离开 tab 商品属性
             res = true;
             this.$refs['GoodsAttr'][0].setInfo()
         }else if(old == '4'){//离开 tab 商品图片
             res = true;
-            //图片当时就已经做了给 vuex 的操作
         }else if(old == '5'){//离开 tab 商品内容
             res = true;
-            //没有这个了,在这里面有一个点击按钮点击后整合所有 vuex 里面的内容发送请求跳转页面
         }
         // 到时候每一个页面都用 res 来接收,并且返回值 统一为 true 目前先在每一个里面写切换时的代码
         if(res==true){//写个这个是因为返回值可能是 promise 但是在符合条件的时候,一定是 true
             this.$emit("tabClick", parseInt(now - 1));
         }
-        
         return res 
-
+        // 后续编辑 : 这里是当时的心路,是已经放弃/作废的代码 是的,当时的我并不会git 不然我可能不会写出v-for 这种蠢事了 因为我不想放弃自己的构思
       /* let p = new Promise((resolve,reject)=>{
         if (this.state) {
           this.$emit("tabClick", parseInt(now - 1));

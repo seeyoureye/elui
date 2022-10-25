@@ -69,6 +69,7 @@ export default {
             }else{
                 //有的话 我一开始是想用三元表达式 但是 三元该怎么写呢
                  obj = {pagenum,pagesize,query}
+                // 后续编辑 : 我告诉你 obj = query ? {pagenum,pagesize,query} : {pagenum,pagesize}; 这样写
             }
             let {data:res} = await this.$API.goods.getGoodsList(obj);
             if(res.meta.status==200){
@@ -91,6 +92,9 @@ export default {
         removeGetData(){
             if(this.goodsList.length==1){
                 this.goodsPaginationData.current = this.goodsPaginationData.current - 1;
+                // 后续编辑 : 这里和上一次一样,出现了相同的问题,没有考虑如果当前页是第一页的情况
+                // 后续编辑 : 试着用三元进行修正,小于1等于1,大于1保持不变
+                this.goodsPaginationData.current < 1 ? this.goodsPaginationData.current = 1 : this.goodsPaginationData.current = this.goodsPaginationData.current;
             }
             this.getData()
             

@@ -1,16 +1,20 @@
 <template>
   <div>
-    <!-- 模拟钩子,其他组件不是这样获取 id 只是试试一直想过没实现过的写法 -->
-    <!-- <span v-show="false">{{getId}}</span> -->
-    <!-- 这里的这个 class 至少要设置一个样式,就是 margin-bottom 有多个时,得给点间距 -->
-   <!--  <div class="goodsParamsList" v-for="item in paramsList" :key="item.index">
+    <!-- 后续编辑 :
+        底下的注释没有阅读的必要,当时图一乐,想到了曾经想过没试过的方法
+        已经弃用
+    -->
+    <!-- 模拟钩子,其他组件不是这样获取 id 只是试试一直想过没实现过的写法
+     <span v-show="false">{{getId}}</span>
+   这里的这个 class 至少要设置一个样式,就是 margin-bottom 有多个时,得给点间距
+    <div class="goodsParamsList" v-for="item in paramsList" :key="item.index">
       <el-row :gutter="20">
         <el-col :span="4"><span>{{item.attr_name}}</span></el-col>
       </el-row>
       简单的测试了一下通过了,然后换成 tag+checked? 来 v-for 
       <span v-for="(attrvals,k) in item.attr_vals.split(',')" :key="k">{{attrvals}}</span>
-    </div> -->
-    <!-- 还是不手写了,有个自带的有勾选框 这是 el 的项目-->
+    </div> 
+   还是不手写了,有个自带的有勾选框 这是 el 的项目-->
     <el-form  ref="form" label-width="80px" size="normal" label-position="top">
       <!-- 套了一层表单 为什么? 因为我想整一个 label-position="top" 其实套一个 div,宽度 100%也是可以做到相同效果的-->
       <el-form-item  :label="item.attr_name"  v-for="(item,k) in paramsList" :key="k" >

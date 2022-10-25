@@ -3,6 +3,10 @@
     <span>商品属性</span>
     <!-- 这个页面和上一个相同,都是一个 form 表单 然后数据 是名称在 label 内容再 input 里面 改不改取决于自己 -->
     <el-form :model="form" ref="form" label-position="top" label-width="80px" :inline="false" size="normal">
+      <!-- 后续编辑 : 
+          这里的数据呈现方式依旧是 v-for,因为当时我即便整体不该v-for整活 但是少部分的地方确实是这样更加合适
+          以前有多少input就得写多少行,每一行不同的配置,现在我只需要写一个就够了
+      -->
       <el-form-item :label="formItem.attr_name" v-for="(formItem,k) in dataList" :key="k">
         <el-input v-model="formItem.attr_vals"></el-input><!--  v-model="" -->
       </el-form-item>

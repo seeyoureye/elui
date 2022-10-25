@@ -2,10 +2,17 @@
     <div><!-- 基本页面是一整个表单结构 -->
         <!-- 商品分类 一个级联选择器 这个选择器,和页面 2 页面 3 有联动 它们需要这个 id-->
         <el-form :model="addGoodsData" ref="Basicsform" :rules="rules" label-position="top" label-width="80px" :inline="false" size="normal">
-            <!-- 商品名称 -->
-            <!-- 商品价格 -->
-            <!-- 商品重量 -->
-            <!-- 商品数量 四个基本的就用 v-for 写了,因为收集的数据比较简单--> 
+            <!-- 后续编辑 :  
+                这里就是我说的,后续
+                我在这里做出了优化我把简单的数据通过v-for来完成
+                复杂的事情我单独拎出来,然后完成它独有的逻辑
+                而不是全部都挤一堆 什么v-if v-else
+                当然这也有局限,比如顺序上的要求 单纯的首尾是可以使用的,如果在中间插入,估计还得是之前那种才行,或者v-for两次? 又开始了
+            -->
+            <!-- 商品名称 
+                 商品价格 
+                 商品重量 
+                 商品数量 四个基本的就用 v-for 写了,因为收集的数据比较简单--> 
             <el-form-item :label="item.label" :prop="item.name" v-for="item in formArr" :key="item.index">
                 <el-input v-model="addGoodsData[item.name]"></el-input>
             </el-form-item>
