@@ -3,6 +3,12 @@
     <div slot="header">
       <span><!-- card title --></span>
     </div>
+    <!-- 后续编辑 : 
+      这个页面其实啥也没干,他这里就让你显示一个表格 
+      然后表格的数据也直接准备好了,什么xaxis,yaxis 等等
+      y坐标 x坐标都有数据
+      我做的只有几个小事,给了个title 标题 然后鼠标移入给点反应显示一个tooltip
+    -->
     <div ref="echartsBox" style="width: 900px; height: 500px"></div>
   </el-card>
 </template>
