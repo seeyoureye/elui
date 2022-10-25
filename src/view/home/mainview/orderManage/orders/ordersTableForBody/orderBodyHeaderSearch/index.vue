@@ -3,6 +3,7 @@
     <!-- 搜索框 按钮 -->
     <el-input style="width:330px" v-model="keyword" placeholder="请输入搜索信息" size="normal"></el-input>
     <!-- 要不要用封装的按钮呢? 说实话有点多此一举 毕竟这里只是个 icon 的 button 又不是 v-for 什么的-->
+    <!-- 后续编辑 : 我为什么用它呢,不是像我说的那样多此一举吗?确实是,但是我认为这样写更好,契合vue的思想,操作数据而不是操作dom -->
     <MyButton :buttonData="buttonData" @click.native='onSumbit'/>
   </div>
 </template>

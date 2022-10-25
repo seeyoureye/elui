@@ -1,5 +1,8 @@
 <template>
   <el-table :data="goods" border stripe>
+    <!--  后续编辑 : 
+        现在回头看,应该头三个用v-for 剩下的手写
+    -->
     <!-- 排序 -->
     <el-table-column 
         align="center"

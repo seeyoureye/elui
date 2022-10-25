@@ -1,10 +1,23 @@
 <template>
     <div>
+        <!--  后续编辑 : 
+            这个组件中我做了一件,之前没有想过的事情
+            就是把这些dialog,都整合起来
+            然后单独引入一个组件即可
+            而不是零零散散的多个dialog
+            那它有没有他的问题呢,也是有的,乱嘛 对吧
+            两个dialog都出现在一个地方,污染了 data区域, prop区域..等等
+            所以以后应该如何应对呢
+            这些dialog,依然是单独的 然后引入到一个容器之中,再在需要的地方引入容器?
+            这样实际虽然只引入了一个容器,但是内部有多个dialog,各个dialog独立且不冲突
+            再用容器像各个dialog组件传递所需的数据,以及向外传递/响应dialog的数据或者是自定义事件
+            完美
+        -->
         <!-- 我不确定是不是只有一个 dialog
                 这还用问?后面还有一个按钮肯定也是了
-                    干脆分离出来一个组件专门用来显示 dialog -->
-        <!-- 既然里面有个级联选择器,那么就需要一个值来接受 还有一个 input 也需要 -->
-        <!-- 这个,是第一个 dialog 是不是该给个名字 
+                    干脆分离出来一个组件专门用来显示 dialog
+            既然里面有个级联选择器,那么就需要一个值来接受 还有一个 input 也需要 
+         这个,是第一个 dialog 是不是该给个名字 
             点击修改地址-->
         <div class="editAddress">
             <el-dialog
@@ -58,7 +71,6 @@
                     <el-button type="primary" @click="closeDialog('expressStatus','close')">OK</el-button>
                 </span>
             </el-dialog>
-            
         </div>
     </div>
 </template>
